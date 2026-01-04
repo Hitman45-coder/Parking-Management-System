@@ -1,0 +1,32 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.vcxproj.user
+
+# Build directories (all levels)
+Debug/
+Release/
+x64/
+x86/
+*/Debug/
+*/Release/
+*/x64/
+*/x86/
+
+# Compiled outputs
+*.obj
+*.exe
+*.dll
+*.ilk
+*.pdb
+*.idb
+*.log
+*.tlog
+
+# Qt generated files
+moc_*
+ui_*.h
+qrc_*.cpp
+qt/
+.qmake.stash
