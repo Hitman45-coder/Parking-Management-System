@@ -12,44 +12,6 @@ Parking::~Parking()
 
 void Parking::setupUI() {
 
-
-	parkHorHeaderList.append({ "Slot", "Vehicle" });
-	parkingStats = new QTableWidget();
-	parkingStats->setColumnCount(parkHorHeaderList.length());
-	parkingStats->setRowCount(5);
-	parkingStats->setHorizontalHeaderLabels(parkHorHeaderList);
-	parkingStats->horizontalHeader()->setVisible(true);
-	parkingStats->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-	parkingStats->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-
-
-	
-	queueHorHeaderList.append({ "Position", "Vehicle Number" });
-	queueStats = new QTableWidget();
-	queueStats->setColumnCount(queueHorHeaderList.length());
-	queueStats->setRowCount(5);
-	queueStats->setHorizontalHeaderLabels(queueHorHeaderList);
-	queueStats->horizontalHeader()->setVisible(true);
-	queueStats->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-	queueStats->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-
-	leftBox = new QGroupBox("Parking lot Status:");
-	QVBoxLayout* leftBoxLayout = new QVBoxLayout(leftBox);
-	leftBoxLayout->setContentsMargins(8, 8, 8, 8);
-	leftBoxLayout->addWidget(parkingStats);
-
-	rightBox = new QGroupBox("Waiting Queue:");
-	QVBoxLayout* rightBoxLayout = new QVBoxLayout(rightBox);
-	rightBoxLayout->setContentsMargins(8, 8, 8, 8);
-	rightBoxLayout->addWidget(queueStats);
-
-	splitter = new QSplitter(Qt::Horizontal);
-	splitter->addWidget(leftBox);
-	splitter->addWidget(rightBox);
-	splitter->setHandleWidth(6);
-	splitter->setContentsMargins(0, 0, 0, 0);
-
-
 	//Vehicle Entry and Exit 
 	entryLabel = new QLabel("Vehicle Entry:");
 	exitLabel = new QLabel("Vehicle Exit:");
@@ -107,12 +69,50 @@ void Parking::setupUI() {
 	entryLayout->addLayout(buttomLayout);
 	entryLayout->addLayout(buttomLayout);
 
+
+	// park and queue stats display
+	parkHorHeaderList.append({ "Slot", "Vehicle" });
+	parkingStats = new QTableWidget();
+	parkingStats->setColumnCount(parkHorHeaderList.length());
+	parkingStats->setRowCount(5);
+	parkingStats->setHorizontalHeaderLabels(parkHorHeaderList);
+	parkingStats->horizontalHeader()->setVisible(true);
+	parkingStats->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+	parkingStats->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+	queueHorHeaderList.append({ "Position", "Vehicle Number" });
+	queueStats = new QTableWidget();
+	queueStats->setColumnCount(queueHorHeaderList.length());
+	queueStats->setRowCount(5);
+	queueStats->setHorizontalHeaderLabels(queueHorHeaderList);
+	queueStats->horizontalHeader()->setVisible(true);
+	queueStats->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+	queueStats->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+	leftBox = new QGroupBox("Parking lot Status:");
+	QVBoxLayout* leftBoxLayout = new QVBoxLayout(leftBox);
+	leftBoxLayout->setContentsMargins(8, 8, 8, 8);
+	leftBoxLayout->addWidget(parkingStats);
+
+	rightBox = new QGroupBox("Waiting Queue:");
+	QVBoxLayout* rightBoxLayout = new QVBoxLayout(rightBox);
+	rightBoxLayout->setContentsMargins(8, 8, 8, 8);
+	rightBoxLayout->addWidget(queueStats);
+
+	splitter = new QSplitter(Qt::Horizontal);
+	splitter->addWidget(leftBox);
+	splitter->addWidget(rightBox);
+	splitter->setHandleWidth(6);
+	splitter->setContentsMargins(0, 0, 0, 0);
+
+	// add all widgets and layout to mainLayout
 	mainLayout = new QVBoxLayout();
 	mainLayout->setContentsMargins(0, 0, 0, 0);
 	mainLayout->addLayout(entryLabelLayout);
 	mainLayout->addWidget(splitter);
 	mainLayout->setStretch(1, 1);
 
+	
 	centralWidget = new QWidget(this);
 	centralWidget->setLayout(mainLayout);
 	setCentralWidget(centralWidget);
